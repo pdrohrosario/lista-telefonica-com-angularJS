@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="listaTelefonica">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,57 +14,81 @@
     <script src="angular.js"></script>
 
     <script>
-        angular.module("listaTelefonica",[]);
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope){
+        angular.module("listaTelefonica", []);
+        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
             $scope.nameAplication = "Lista Telefônica";
-            $scope.contatos = [ 
-                {nome:"Pedro", telefone:"999997777"},
-                {nome:"João", telefone:"999997777"},
-                {nome:"Tiago", telefone:"988886666"},
+            $scope.contatos = [
+                { nome: "Pedro", telefone: "999997777" },
+                { nome: "João", telefone: "999997777" },
+                { nome: "Tiago", telefone: "988886666" },
             ];
 
-            $scope.adicionarContato = function(contato) {
+            $scope.operadoras = [
+                { nome: "Oi", codigo: 14, categoria: "Celular" },
+                { nome: "Vivo", codigo: 15, categoria: "Celular" },
+                { nome: "Tim", codigo: 16, categoria: "Celular" },
+                { nome: "Claro/Net", codigo: 47, categoria: "Fixo" },
+            ];
+
+            $scope.adicionarContato = function (contato) {
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato;
             }
+
         });
 
     </script>
 </head>
+
 <body ng-controller="listaTelefonicaCtrl">
     <div class="container">
+        {{contatos}}
         <div class="jumbotron p-5 bg-light">
             <h1 class="display-3 text-center" ng-bind="nameAplication"></h1>
             <table class="table table-responsive mb-1">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Nome</th>
                         <th>Telefone</th>
+                        <th>Operadora</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="contato in contatos">
+                    <tr ng-class="{selected: contato.selecionado}" ng-repeat="contato in contatos">
+                        <td>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" ng-model="contato.selecionado" value="checkedValue">
+                            </div>
+                        </td>
                         <td scope="row">{{contato.nome}}</td>
                         <td scope="row">{{contato.telefone}}</td>
+                        <td scope="row">{{contato.operadora.nome}}</td>
                     </tr>
                 </tbody>
             </table>
 
-            <hr/>
+            <hr />
 
             <div class="form-group">
-                <input class="form-control mb-2" type="text" ng-model="contato.nome" placeholder="Nome"/>
-                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+                <input class="form-control mb-2" type="text" ng-model="contato.nome" placeholder="Nome" />
+                <input class="form-control mb-2" type="text" ng-model="contato.telefone" placeholder="Telefone" />
+                <select class="form-control form-select" ng-model="contato.operadora"
+                    aria-label="Selecione uma operadora"
+                    ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" name="" id="">
+                    <option value="">Selecione uma operadora.</option>
+                </select>
             </div>
 
             <div class="form-group mt-2 d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary" ng-click="adicionarContato(contato)">Adicionar</button>
+                <button type="submit" class="btn btn-primary" ng-click="adicionarContato(contato)"
+                    ng-disabled="!contato.nome || !contato.telefone || !contato.operadora">Adicionar</button>
                 <button type="submit" class="btn btn-danger" ng-click="adicionarContato(contato)">Remover</button>
 
             </div>
-                
-            
+
         </div>
     </div>
 </body>
+
 </html>

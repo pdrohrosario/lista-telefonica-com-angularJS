@@ -6,3 +6,7 @@
     margin-right: auto;
 }
 
+.selected{
+    background-color: #B5D1FF;
+    font-weight: bold;
+}
