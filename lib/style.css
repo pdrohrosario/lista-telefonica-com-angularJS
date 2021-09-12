@@ -10,3 +10,13 @@
     background-color: #B5D1FF;
     font-weight: bold;
 }
+
+.opcaoColorida{
+    width: 20px;
+    height: 20px;
+    background-color: grey
+}
+
+.footer{
+    text-decoration: none;
+}

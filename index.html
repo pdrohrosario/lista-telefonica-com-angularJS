@@ -18,9 +18,9 @@
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
             $scope.nameAplication = "Lista Telefônica";
             $scope.contatos = [
-                { nome: "Pedro", telefone: "999997777" },
-                { nome: "João", telefone: "999997777" },
-                { nome: "Tiago", telefone: "988886666" },
+                { nome: "Pedro", telefone: "999997777",cor:"red" },
+                { nome: "João", telefone: "999997777", cor:"green" },
+                { nome: "Tiago", telefone: "988886666", cor:"blue" },
             ];
 
             $scope.operadoras = [
@@ -35,6 +35,20 @@
                 delete $scope.contato;
             }
 
+            $scope.apagerContato = function (contatos) {
+                $scope.contatos = contatos.filter((contato) => {
+                    if (!contato.selecionado) {
+                        return contato;
+                    }
+                });
+            };
+
+            $scope.existeSelecionado = function (contatos){
+                return contatos.some((contato) => {
+                    return contato.selecionado;
+                });
+            }
+
         });
 
     </script>
@@ -42,28 +56,30 @@
 
 <body ng-controller="listaTelefonicaCtrl">
     <div class="container">
-        {{contatos}}
         <div class="jumbotron p-5 bg-light">
             <h1 class="display-3 text-center" ng-bind="nameAplication"></h1>
-            <table class="table table-responsive mb-1">
+            <table ng-show="contatos.length > 0" class="table table-striped responsive mb-1">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Operadora</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-class="{selected: contato.selecionado}" ng-repeat="contato in contatos">
                         <td>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" ng-model="contato.selecionado" value="checkedValue">
+                                <input type="checkbox" class="form-check-input" ng-model="contato.selecionado"
+                                    value="checkedValue">
                             </div>
                         </td>
                         <td scope="row">{{contato.nome}}</td>
                         <td scope="row">{{contato.telefone}}</td>
                         <td scope="row">{{contato.operadora.nome}}</td>
+                        <th><div class="opcaoColorida" ng-style="{'background-color':contato.cor}"></div></th>
                     </tr>
                 </tbody>
             </table>
@@ -83,10 +99,10 @@
             <div class="form-group mt-2 d-flex justify-content-evenly">
                 <button type="submit" class="btn btn-primary" ng-click="adicionarContato(contato)"
                     ng-disabled="!contato.nome || !contato.telefone || !contato.operadora">Adicionar</button>
-                <button type="submit" class="btn btn-danger" ng-click="adicionarContato(contato)">Remover</button>
+                <button type="submit" class="btn btn-danger" ng-hide="!existeSelecionado(contatos)" ng-disabled="apagarContato(contatos)">Remover</button>
 
             </div>
-
+            <div ng-include="'footer.html'"></div>
         </div>
     </div>
 </body>
