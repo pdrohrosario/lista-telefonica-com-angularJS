@@ -11,10 +11,11 @@
 
     <title>Lista Telefônica</title>
 
-    <script src="angular.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-messages.js"></script>
 
     <script>
-        angular.module("listaTelefonica", []);
+        angular.module("listaTelefonica", ["ngMessages"]);
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
             $scope.nameAplication = "Lista Telefônica";
             $scope.contatos = [
@@ -88,11 +89,12 @@
             <form name="contatoForm">
                 <div class="form-group">
 
-                    <input class="form-control mb-2" type="text" ng-model="contato.nome" ng-minlength="10" name="nome" placeholder="Nome"
-                        ng-required="true" />
+                    <input class="form-control mb-2" type="text" ng-model="contato.nome" ng-minlength="10" name="nome"
+                        placeholder="Nome" ng-required="true" />
 
-                    <input class="form-control mb-2" type="text" ng-model="contato.telefone" ng-minlength="10" name="telefone"
-                        placeholder="Telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\s\d{5}-\d{4}$/"/>
+                    <input class="form-control mb-2" type="text" ng-model="contato.telefone" ng-minlength="10"
+                        name="telefone" placeholder="Telefone" ng-required="true"
+                        ng-pattern="/^\(\d{2}\)\s\d{5}-\d{4}$/" />
 
                     <select class="form-control form-select" ng-model="contato.operadora" ng-required="true"
                         aria-label="Selecione uma operadora"
@@ -103,17 +105,19 @@
                 </div>
             </form>
 
-            <div class="alert alert-danger mt-2" ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty" role="alert">
+            <div class="alert alert-danger mt-2" ng-messages="contatoForm.nome.$error" role="alert">
                 <strong>Atenção:</strong>
-                <p class="alert-headingS mb-0">Preencha as informações do campo nome.</p>
+                <div ng-message="required && dirty">
+                    <p class="alert-headingS mb-0">Preencha as informações do campo nome.</p>
+                </div>
+
+                <div ng-message="minlength">
+                    <p class="alert-headingS mb-0">O número minímo de caracteres para o nome são 10.</p>
+                </div>
             </div>
 
-            <div class="alert alert-danger mt-2" ng-show="contatoForm.nome.$error.minlength" role="alert">
-                <strong>Atenção:</strong>
-                <p class="alert-headingS mb-0">O número minímo de caracteres para o nome são 10.</p>
-            </div>
-
-            <div class="alert alert-danger mt-2" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" role="alert">
+            <div class="alert alert-danger mt-2"
+                ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" role="alert">
                 <strong>Atenção:</strong>
                 <p class="alert-headingS mb-0">Preencha as informações do campo telefone.</p>
             </div>
