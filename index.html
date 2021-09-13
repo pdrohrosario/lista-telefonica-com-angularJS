@@ -33,6 +33,7 @@
             $scope.adicionarContato = function (contato) {
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato;
+                $scope.contatoForm.$setPristine();
             }
 
             $scope.apagerContato = function (contatos) {
@@ -86,26 +87,40 @@
 
             <form name="contatoForm">
                 <div class="form-group">
-                    <input class="form-control mb-2" type="text" ng-model="contato.nome" name="nome" placeholder="Nome"
+
+                    <input class="form-control mb-2" type="text" ng-model="contato.nome" ng-minlength="10" name="nome" placeholder="Nome"
                         ng-required="true" />
-                    <input class="form-control mb-2" type="text" ng-model="contato.telefone" name="telefone"
-                        placeholder="Telefone" ng-required="true" />
-                    <select class="form-control form-select" ng-model="contato.operadora"
+
+                    <input class="form-control mb-2" type="text" ng-model="contato.telefone" ng-minlength="10" name="telefone"
+                        placeholder="Telefone" ng-required="true" ng-pattern="/^\(\d{2}\)\s\d{5}-\d{4}$/"/>
+
+                    <select class="form-control form-select" ng-model="contato.operadora" ng-required="true"
                         aria-label="Selecione uma operadora"
                         ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
                         <option value="">Selecione uma operadora.</option>
                     </select>
+
                 </div>
             </form>
 
-            <div class="alert alert-danger mt-2" ng-show="contatoForm.nome.$invalid" role="alert">
+            <div class="alert alert-danger mt-2" ng-show="contatoForm.nome.$error.required && contatoForm.nome.$dirty" role="alert">
                 <strong>Atenção:</strong>
                 <p class="alert-headingS mb-0">Preencha as informações do campo nome.</p>
             </div>
 
-            <div class="alert alert-danger mt-2" ng-show="contatoForm.telefone.$invalid" role="alert">
+            <div class="alert alert-danger mt-2" ng-show="contatoForm.nome.$error.minlength" role="alert">
+                <strong>Atenção:</strong>
+                <p class="alert-headingS mb-0">O número minímo de caracteres para o nome são 10.</p>
+            </div>
+
+            <div class="alert alert-danger mt-2" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty" role="alert">
                 <strong>Atenção:</strong>
                 <p class="alert-headingS mb-0">Preencha as informações do campo telefone.</p>
+            </div>
+
+            <div class="alert alert-danger mt-2" ng-show="contatoForm.telefone.$error.pattern" role="alert">
+                <strong>Atenção:</strong>
+                <p class="alert-headingS mb-0">O campo telefone dever ter o formato (DD) 9####-####.</p>
             </div>
 
             <div class="form-group mt-2 d-flex justify-content-evenly">
