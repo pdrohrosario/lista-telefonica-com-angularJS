@@ -13,22 +13,23 @@
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-messages.js"></script>
+    <script src="lib/angular/angular-locale_pt-br.js"></script>
 
     <script>
         angular.module("listaTelefonica", ["ngMessages"]);
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
+        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $filter) {
             $scope.nameAplication = "Lista Telefônica";
             $scope.contatos = [
-                { nome: "Pedro",data: new Date(), telefone: "999997777", cor: "red" },
-                { nome: "João", data: new Date(),telefone: "999997777", cor: "green" },
+                { nome: $filter('uppercase')("Pedro"),data: new Date(), telefone: "999997777", cor: "red" },
+                { nome: "João", data: new Date(),telefone: "999997777",cor: "green" },
                 { nome: "Tiago",data: new Date(), telefone: "988886666", cor: "blue" },
             ];
 
             $scope.operadoras = [
-                { nome: "Oi", codigo: 14, categoria: "Celular" },
-                { nome: "Vivo", codigo: 15, categoria: "Celular" },
-                { nome: "Tim", codigo: 16, categoria: "Celular" },
-                { nome: "Claro/Net", codigo: 47, categoria: "Fixo" },
+                { nome: "Oi", codigo: 14, categoria: "Celular",preco: 2 },
+                { nome: "Vivo", codigo: 15, preco:1, categoria: "Celular" },
+                { nome: "Tim", codigo: 16,preco:1.50, categoria: "Celular" },
+                { nome: "Claro/Net", codigo: 47,preco:1.50, categoria: "Fixo" },
             ];
 
             $scope.adicionarContato = function (contato) {
@@ -87,7 +88,7 @@
                                     value="checkedValue">
                             </div>
                         </td>
-                        <td scope="row">{{contato.nome | uppercase}}</td>
+                        <td scope="row">{{contato.nome | limitTo:10}}</td>
                         <td scope="row">{{contato.telefone}}</td>
                         <td scope="row">{{contato.operadora.nome | lowercase}}</td>
                         <td scope="row">{{contato.data | date:'dd/MM'}}</td>
@@ -109,7 +110,7 @@
 
                     <select class="form-control form-select" ng-model="contato.operadora" ng-required="true"
                         aria-label="Selecione uma operadora"
-                        ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
+                        ng-options="operadora.nome + ' - ' + (operadora.preco | currency)  group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
                         <option value="">Selecione uma operadora.</option>
                     </select>
 
