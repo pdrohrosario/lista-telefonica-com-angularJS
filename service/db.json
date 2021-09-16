@@ -1,0 +1,46 @@
+{
+    "operadoras":[
+        {   
+            "nome": "Claro/Net",
+            "codigo": 47,
+            "preco": 1.5,
+            "categoria": "Fixo"
+        }, {
+            "nome": "Tim",
+            "codigo": 16,
+            "preco": 1.5,
+            "categoria": "Celular"
+        }, {
+            "nome": "Vivo",
+            "codigo": 15,
+            "preco": 1,
+            "categoria": "Celular"
+        },
+            {
+                "nome": "Oi",
+                "codigo": 14,
+                "categoria": "Celular",
+                "preco": "2"
+            }
+        ],
+        "contatos": [
+            {
+                "nome": "Pedro",
+                "data": "10/09",
+                "telefone": "999997777",
+                "cor": "red"
+            },
+            {
+                "nome": "João",
+                "data": "11/09",
+                "telefone": "999997777",
+                "cor": "green"
+            },
+            {
+                "nome": "Tiago",
+                "data": "12/09",
+                "telefone": "999997766",
+                "cor": "blue"
+            }
+        ]           
+}
