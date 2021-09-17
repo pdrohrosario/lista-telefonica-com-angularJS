@@ -102,6 +102,34 @@
       },
       "data": "2021-09-17T00:08:18.108Z",
       "id": 7
+    },
+    {
+      "nome": "Pedro Henrique do Rosário",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 1,
+        "nome": "Claro/Net",
+        "codigo": 47,
+        "preco": 1.5,
+        "categoria": "Fixo"
+      },
+      "codigo": "QC4D=<V>%W22!G.OM?]+",
+      "data": "2021-09-17T00:58:14.118Z",
+      "id": 8
+    },
+    {
+      "nome": "joao carlos",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 2,
+        "nome": "Tim",
+        "codigo": 16,
+        "preco": 1.5,
+        "categoria": "Celular"
+      },
+      "codigo": "MJF:4XV$C28CP!1)0=6Y1R6W+-X,+GBVH6+G93]OW_O@X[OP/DW#;NEX +XOWHQ<! <%\\/F9(\\F:G[6O_- OUB?LV6OP.AZZ;CWR",
+      "data": "2021-09-17T01:07:37.062Z",
+      "id": 9
     }
   ]
 }

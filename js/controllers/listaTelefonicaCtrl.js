@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $filter, $http, contatosAPI, operadorasAPI) {
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $filter, $http, contatosAPI, operadorasAPI, codigoGenerator) {
     $scope.nameAplication = "Lista Telefônica";
 
     let carregarContatos = () => 
@@ -26,6 +26,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     $scope.operadoras = [];
 
     $scope.adicionarContato = function (contato) {
+        contato.codigo = codigoGenerator.generate();
         contato.data = new Date();
         contatosAPI.saveContato(contato).success(function (data){
             delete $scope.contato;
