@@ -1,12 +1,14 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $filter, $http) {
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope, $filter, $http, contatosAPI, operadorasAPI) {
     $scope.nameAplication = "Lista Telefônica";
 
-    let carregarContatos = () => $http.get("http://localhost:8888/contatos")
-        .success(function (data) {
+    let carregarContatos = () => 
+        contatosAPI.getContatos().success(function (data) {
             $scope.contatos = data;
+        }).error(function (data, status){
+            $scope.message = "Aconteceu um problema: " + data;
         });
 
-    let carregarOperadoras = () => $http.get("http://localhost:8888/operadoras")
+    let carregarOperadoras = () => operadorasAPI.getOperadoras()
         .success(function (data) {
             console.log(data);
             $scope.operadoras = data;
@@ -24,9 +26,13 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($s
     $scope.operadoras = [];
 
     $scope.adicionarContato = function (contato) {
-        $scope.contatos.push(angular.copy(contato));
-        delete $scope.contato;
-        $scope.contatoForm.$setPristine();
+        contato.data = new Date();
+        contatosAPI.saveContato(contato).success(function (data){
+            delete $scope.contato;
+            $scope.contatoForm.$setPristine();
+            carregarContatos();
+        });
+        
     }
 
     $scope.apagerContato = function (contatos) {

@@ -1,46 +1,107 @@
 {
-    "operadoras":[
-        {   
-            "nome": "Claro/Net",
-            "codigo": 47,
-            "preco": 1.5,
-            "categoria": "Fixo"
-        }, {
-            "nome": "Tim",
-            "codigo": 16,
-            "preco": 1.5,
-            "categoria": "Celular"
-        }, {
-            "nome": "Vivo",
-            "codigo": 15,
-            "preco": 1,
-            "categoria": "Celular"
-        },
-            {
-                "nome": "Oi",
-                "codigo": 14,
-                "categoria": "Celular",
-                "preco": "2"
-            }
-        ],
-        "contatos": [
-            {
-                "nome": "Pedro",
-                "data": "10/09",
-                "telefone": "999997777",
-                "cor": "red"
-            },
-            {
-                "nome": "João",
-                "data": "11/09",
-                "telefone": "999997777",
-                "cor": "green"
-            },
-            {
-                "nome": "Tiago",
-                "data": "12/09",
-                "telefone": "999997766",
-                "cor": "blue"
-            }
-        ]           
+  "operadoras": [
+    {
+      "id": 1,
+      "nome": "Claro/Net",
+      "codigo": 47,
+      "preco": 1.5,
+      "categoria": "Fixo"
+    },
+    {
+      "id": 2,
+      "nome": "Tim",
+      "codigo": 16,
+      "preco": 1.5,
+      "categoria": "Celular"
+    },
+    {
+      "id": 3,
+      "nome": "Vivo",
+      "codigo": 15,
+      "preco": 1,
+      "categoria": "Celular"
+    },
+    {
+      "id": 4,
+      "nome": "Oi",
+      "codigo": 14,
+      "categoria": "Celular",
+      "preco": "2"
+    }
+  ],
+  "contatos": [
+    {
+      "id": 1,
+      "nome": "Pedro",
+      "data": "10/09",
+      "telefone": "999997777",
+      "cor": "red"
+    },
+    {
+      "id": 2,
+      "nome": "João",
+      "data": "11/09",
+      "telefone": "999997777",
+      "cor": "green"
+    },
+    {
+      "id": 3,
+      "nome": "Tiago",
+      "data": "12/09",
+      "telefone": "999997766",
+      "cor": "blue"
+    },
+    {
+      "nome": "Pedro Henrique do Rosário",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 1,
+        "nome": "Claro/Net",
+        "codigo": 47,
+        "preco": 1.5,
+        "categoria": "Fixo"
+      },
+      "data": "2021-09-17T00:00:46.870Z",
+      "id": 4
+    },
+    {
+      "nome": "tiago rosario",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 2,
+        "nome": "Tim",
+        "codigo": 16,
+        "preco": 1.5,
+        "categoria": "Celular"
+      },
+      "data": "2021-09-17T00:01:54.922Z",
+      "id": 5
+    },
+    {
+      "nome": "Pedro Henrique do Rosário",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 4,
+        "nome": "Oi",
+        "codigo": 14,
+        "categoria": "Celular",
+        "preco": "2"
+      },
+      "data": "2021-09-17T00:03:56.385Z",
+      "id": 6
+    },
+    {
+      "nome": "Pedro Henrique do Rosário",
+      "telefone": "(47) 99673-8679",
+      "operadora": {
+        "id": 2,
+        "nome": "Tim",
+        "codigo": 16,
+        "preco": 1.5,
+        "categoria": "Celular"
+      },
+      "data": "2021-09-17T00:08:18.108Z",
+      "id": 7
+    }
+  ]
 }
