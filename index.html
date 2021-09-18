@@ -20,6 +20,8 @@
     <script src="js/const/configVAlue.js"></script>
     <script src="js/services/codigoGeneratorService.js"></script>
     <script src="js/config/codigoGeneratorConfig.js"></script>
+    <script src="js/filters/nameFilter.js"></script>
+    <script src="js/filters/ellipsisFilter.js"></script>
 
 </head>
 
@@ -49,7 +51,7 @@
                                     value="checkedValue">
                             </div>
                         </td>
-                        <td scope="row">{{contato.nome | limitTo:10}}</td>
+                        <td scope="row">{{contato.nome | name | ellipsis | limitTo:20}}</td>
                         <td scope="row">{{contato.telefone}}</td>
                         <td scope="row">{{contato.operadora.nome | lowercase}}</td>
                         <td scope="row">{{contato.data | date:'dd/MM'}}</td>
