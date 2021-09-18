@@ -82,20 +82,18 @@
                 </div>
             </form>
 
-            <div mt-2" ng-messages="contatoForm.nome.$error" ng-show="contatoForm.nome.$dirty">
+            <div class="mt-2" ng-messages="contatoForm.nome.$error" ng-show="contatoForm.nome.$dirty">
                 <div ng-message="required"  class="alert alert-danger" role="alert">
-                    <div ng-message="required || minlength"><strong>Atenção:</strong></div>
                     <p class="alert-headingS mb-0">Preencha as informações do campo nome.</p>
                 </div>
-                <div ng-message="minlength">
+                <div ng-message="minlength" class="alert alert-danger" role="alert">
                     <p class="alert-headingS mb-0">O número minímo de caracteres para o nome são 10.</p>
                 </div>
             </div>
 
             <div class=" mt-2" ng-messages="contatoForm.telefone.$error"
                 ng-show="contatoForm.telefone.$dirty">
-                <div ng-message="required || pattern"><strong>Atenção:</strong></div>
-                <div ng-message="required" class="alert alert-danger"  role="alert">
+                <div ng-message="required" class="alert alert-danger" role="alert">
                     <p class="alert-headingS mb-0">Preencha as informações do campo telefone.</p>
                 </div>
                 <div ng-message="pattern" class="alert alert-danger"  role="alert">
