@@ -23,6 +23,7 @@
     <script src="js/filters/nameFilter.js"></script>
     <script src="js/filters/ellipsisFilter.js"></script>
     <script src="js/directives/uiAlertDirective.js"></script>
+    <script src="js/directives/uiDateDirective.js"></script>
 
 </head>
 
@@ -31,9 +32,11 @@
         <div class="jumbotron p-5 bg-light justify-content-center">
             <h1 class="display-3 text-center" ng-bind="nameAplication"></h1>
 
-            <ui-alert title="Ops, aconteceu um problema!">
-                {{error}}
-            </ui-alert>
+            <div ng-if="error">
+                <ui-alert title="Ops, aconteceu um problema!">
+                    {{error}}
+                </ui-alert>
+            </div>
 
             <div class="mb-3">
                 <label for="campoBusca" class="form-label"></label>
@@ -78,6 +81,8 @@
                     <input class="form-control mb-2" type="text" ng-model="contato.telefone" ng-minlength="10"
                         name="telefone" placeholder="Telefone" ng-required="true"
                         ng-pattern="/^\(\d{2}\)\s\d{5}-\d{4}$/" />
+
+                    <input class="form-control mb-2" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
 
                     <select class="form-control form-select" ng-model="contato.operadora" ng-required="true"
                         aria-label="Selecione uma operadora"
