@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="listaTelefonica">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +7,7 @@
 
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" href="css/ui.css">
 
     <title>Lista Telefônica</title>
 
@@ -22,6 +22,7 @@
     <script src="js/config/codigoGeneratorConfig.js"></script>
     <script src="js/filters/nameFilter.js"></script>
     <script src="js/filters/ellipsisFilter.js"></script>
+    <script src="js/directives/uiAlertDirective.js"></script>
 
 </head>
 
@@ -29,6 +30,11 @@
     <div class="container">
         <div class="jumbotron p-5 bg-light justify-content-center">
             <h1 class="display-3 text-center" ng-bind="nameAplication"></h1>
+
+            <ui-alert title="Ops, aconteceu um problema!">
+                {{error}}
+            </ui-alert>
+
             <div class="mb-3">
                 <label for="campoBusca" class="form-label"></label>
                 <input type="text" class="form-control" ng-model="parametroBuscado" name="busca" id=""
